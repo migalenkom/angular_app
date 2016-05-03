@@ -8,8 +8,8 @@ App.factory( 'AuthService', function($window) {
   	  }
   	},
     login: function(user) {
-    currentUser = user
-    $window.sessionStorage.setItem('user', JSON.stringify(user));
+    currentUser = user.body
+    $window.sessionStorage.setItem('user', JSON.stringify(user.body));
     },
     logout: function() {
 	  currentUser = null
