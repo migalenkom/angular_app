@@ -20,10 +20,19 @@ App.config(function($routeProvider, $locationProvider) {
     templateUrl: '/js/posts/partials/index.html',
     controller: 'IndexController'
   })
+   .when('/posts/new', {
+    templateUrl: '/js/posts/partials/form.html',
+    controller: 'NewController'
+  })
   .when('/posts/:id', {
     templateUrl: '/js/posts/partials/show.html',
     controller: 'ShowController'
   })
+  .when('/posts/:id/edit', {
+    templateUrl: '/js/posts/partials/form.html',
+    controller: 'EditController'
+  })
+
   .otherwise('/');
 
 }).

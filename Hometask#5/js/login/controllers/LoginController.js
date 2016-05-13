@@ -11,7 +11,7 @@ App.controller('LoginController',function($scope, $routeParams, $location, $filt
         		}
 	      }).then(function (response, status){
 	       if (response.data.status == 302) {
-		       AuthService.login(response.data);
+		       AuthService.login(response.data, $scope.password);
 		       $location.path( "/" );
 	   		}
 	   });

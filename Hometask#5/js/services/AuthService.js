@@ -1,15 +1,17 @@
-App.factory( 'AuthService', function($window) {
+App.factory( 'AuthService', function($window, $base64, $http) {
   var currentUser;
 
   return {
   	fetchUser: function(){
   	  if ($window.sessionStorage.user) {
   	    currentUser = JSON.parse($window.sessionStorage.user);
+        $http.defaults.headers.common["Authorization"] = 'Basic ' + $base64.encode( currentUser.name + ':' + currentUser.password );
   	  }
   	},
-    login: function(user) {
+    login: function(user, pass) {
     currentUser = user.body
-    $window.sessionStorage.setItem('user', JSON.stringify(user.body));
+    currentUser.password = pass
+    $window.sessionStorage.setItem('user', JSON.stringify(currentUser));
     },
     logout: function() {
 	  currentUser = null
